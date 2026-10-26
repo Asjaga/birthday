@@ -1,15 +1,24 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Happy Birthday Munikrishna</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Dancing+Script:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="Css/style.css">
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Happy Birthday Rimpal ✨ | A Magical Celebration</title>
+  
+  <!-- Preconnect & Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="Css/style.css?v=9">
+  <script src="confetti.min.js"></script>
 </head>
 <body>
+
+<!-- Background Audio: Rimpal's Birthday Song -->
+<audio id="bgMusic" src="audio/song_traditional_vocal.mp3" preload="auto" loop autoplay playsinline></audio>
+
+<!-- Atmospheric Environment Elements -->
 <div class="sky" aria-hidden="true"></div>
 <div class="moon" aria-hidden="true"></div>
 <div class="cloud c1" aria-hidden="true"></div>
@@ -17,75 +26,178 @@
 <canvas id="bg" aria-hidden="true"></canvas>
 <div class="hills" aria-hidden="true"></div>
 
-<header class="hero">
-  <img class="bunting" src="img/banner.png" alt="Happy birthday bunting">
-  <div class="portrait tilt" data-depth="1">
-    <img src="img/user.png" alt="Munikrishna">
-    <i class="spark s1">✦</i><i class="spark s2">✧</i><i class="spark s3">✦</i><i class="spark s4">✧</i>
+<!-- Floating Top Music Bar -->
+<div class="top-bar">
+  <div class="music-player-pill" id="musicToggle" title="Click to play or pause birthday song">
+    <div class="equalizer paused" id="equalizer">
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+      <span class="eq-bar"></span>
+    </div>
+    <div class="play-icon-btn" id="playIcon">▶</div>
+    <div class="music-info">
+      <span class="music-title" id="musicTitle">Happy Birthday Song 💖</span>
+      <span class="music-status" id="musicStatus">Tap to Play</span>
+    </div>
   </div>
-  <h1 class="typewrap" aria-live="polite"><span id="typewriter"></span><i class="cursor" aria-hidden="true"></i></h1>
-  <p class="hero-name">Munikrishna</p>
-  <a class="scroll-hint" href="#letter" aria-label="Scroll to your letter">scroll down</a>
+</div>
+
+<!-- Hero Section -->
+<header class="hero">
+  <img class="bunting" src="img/banner.png" alt="Happy Birthday Garland">
+
+  <div class="tiara-badge">
+    <span>👑 Happy Birthday Rimpal</span>
+  </div>
+
+  <div class="portrait-container tilt" data-depth="1">
+    <div class="portrait-halo"></div>
+    <div class="portrait-frame">
+      <img src="img/user.png?v=5" alt="Rimpal">
+    </div>
+    <i class="spark s1">✦</i>
+    <i class="spark s2">✧</i>
+    <i class="spark s3">✦</i>
+    <i class="spark s4">✧</i>
+  </div>
+
+  <h1 class="typewrap" aria-live="polite">
+    <span id="typewriter"></span>
+    <i class="cursor" aria-hidden="true"></i>
+  </h1>
+
+  <p class="hero-name">Rimpal</p>
+
+  <p class="hero-sub">
+    Wishing you a day as radiant, gentle, and beautiful as your smile.
+  </p>
+
+  <a class="scroll-hint" href="#letter" aria-label="Scroll down to letter">scroll down</a>
 </header>
 
+<!-- Main Journey -->
 <main>
+  <!-- Section 1: Heartfelt Birthday Letter -->
   <section class="wrap" id="letter" data-r>
     <div class="letter tilt">
-      <span class="heart" aria-hidden="true">❤️</span>
-      <h2>Hey, Munikrishna</h2>
-      <p style="--d:.1s">hi, im <strong>murali</strong> 🍂</p>
-      <p style="--d:.25s">wishing you a very <mark>happy birthday 🎉</mark></p>
-      <p style="--d:.4s">ive created something special just for you, scroll down and enjoy the surprises! 🍁</p>
-      <p style="--d:.55s">may your day be filled with happiness, laughter, and sweet memories 🌺</p>
+      <span class="heart-seal" aria-hidden="true">❤️</span>
+      <h2>Dear Rimpal 🌸</h2>
+      <p>Wishing you the happiest birthday! 🎉</p>
+      <p>Today is all about celebrating <strong>you</strong> — your contagious laughter, that million-dollar smile that brightens up every room, and the genuine kindness you carry wherever you go.</p>
+      <p>I put together this little digital surprise with music, memories, and heartfelt wishes, just to make you smile on your special day.</p>
+      <p>May this new year bring you boundless joy, peace, exciting adventures, and all the success your heart desires. Always keep shining bright!</p>
+      <p class="letter-sign">Happy Birthday once again! 🥂✨</p>
     </div>
   </section>
 
-  <section class="cake-sec wrap" data-r>
-    <div class="cake-stage"><span class="ring"></span><img class="cake" src="img/cake.svg" alt="Birthday cake"></div>
-    <button class="pill" id="wishBtn" type="button">Make a wish</button>
-    <p class="wish" id="wishMsg" aria-live="polite"></p>
+  <!-- Section 2: Interactive Birthday Cake & Wishes -->
+  <section class="cake-sec wrap" id="cake" data-r>
+    <h2 class="sec-title">Make A Birthday Wish</h2>
+    <p class="sec-sub">Close your eyes, think of your sweetest dream, and blow out the candle 🕯️</p>
+
+    <div class="cake-stage" id="cakeStage">
+      <span class="ring"></span>
+      <div class="cake-wrapper">
+        <div class="candle-flame-wrapper" id="flameWrapper" title="Click to blow out the candle">
+          <div class="candle-flame"></div>
+          <div class="candle-smoke"></div>
+        </div>
+        <img class="cake" src="img/cake.svg" alt="Birthday Cake">
+      </div>
+    </div>
+
+    <button class="pill-btn" id="wishBtn" type="button">🕯️ Make a Wish & Blow Candle</button>
+    <p class="wish-msg" id="wishMsg" aria-live="polite"></p>
   </section>
 
-  <section class="memories wrap" data-r>
-    <h2 class="sec-title">Our old memories</h2>
-    <div class="stack" id="stack" aria-label="Photo memories">
-      <figure class="polaroid"><img src="img/1.jpg" alt="Group selfie" draggable="false"><figcaption>the squad</figcaption></figure>
-      <figure class="polaroid"><img src="img/2.jpg" alt="Friends in class" draggable="false"><figcaption>class break</figcaption></figure>
-      <figure class="polaroid"><img src="img/3.jpg" alt="Friends on the steps" draggable="false"><figcaption>bench gang</figcaption></figure>
-      <figure class="polaroid"><img src="img/4.jpg" alt="Friends lined up outside" draggable="false"><figcaption>all together</figcaption></figure>
-    </div>
-    <div class="ctrl">
-      <button id="prevImg" class="round" aria-label="Previous photo">‹</button>
-      <span id="count" class="count">1 / 4</span>
-      <button id="nextImg" class="round" aria-label="Next photo">›</button>
+  <!-- Section 3: Cherished Photo Memories (Classic Polaroid Stack) -->
+  <section class="memories wrap" id="memories" data-r>
+    <h2 class="sec-title">Cherished Moments</h2>
+    <p class="sec-sub">Sweet memories of smiles, grace, and laughter 📸</p>
+
+    <div class="stack-view">
+      <div class="stack" id="stack" aria-label="Photo memories">
+        <figure class="polaroid">
+          <img src="img/1.jpg" alt="Rimpal smiling" draggable="false">
+          <figcaption>That radiant smile ✨</figcaption>
+        </figure>
+        <figure class="polaroid">
+          <img src="img/2.jpg" alt="Rimpal with flower bouquet" draggable="false">
+          <figcaption>Flowers & Sunshine 💐</figcaption>
+        </figure>
+        <figure class="polaroid">
+          <img src="img/3.jpg" alt="Rimpal evening dress" draggable="false">
+          <figcaption>All dressed in black 🌙</figcaption>
+        </figure>
+        <figure class="polaroid">
+          <img src="img/4.jpg" alt="Rimpal traditional lehenga" draggable="false">
+          <figcaption>Royal & Graceful 💙</figcaption>
+        </figure>
+        <figure class="polaroid">
+          <img src="img/5.jpg" alt="Rimpal in festive lights" draggable="false">
+          <figcaption>Sparkling in fairy lights 🖤✨</figcaption>
+        </figure>
+      </div>
+
+      <div class="ctrl">
+        <button id="prevImg" class="round-btn" aria-label="Previous photo">‹</button>
+        <span id="count" class="count">1 / 5</span>
+        <button id="nextImg" class="round-btn" aria-label="Next photo">›</button>
+      </div>
     </div>
   </section>
 
-  <section class="final wrap" data-r>
-    <h2 class="sec-title">Final message</h2>
+  <!-- Section 4: 3D Flip Birthday Greeting Card -->
+  <section class="final wrap" id="final-card" data-r>
+    <h2 class="sec-title">A Birthday Card For You</h2>
+    <p class="sec-sub">Tap the card to open your birthday note 💌</p>
+
     <div class="card-wrap tilt" id="cardContainer">
       <div class="card" id="card">
+        <!-- Front Side -->
         <div class="side front">
-          <h3>Happy Birthday</h3>
-          <p>Tap the button to open this card</p>
-          <img src="img/cake.svg" alt="">
-          <button class="pill dark" id="toggleButton" type="button">Open card</button>
+          <h3>Happy Birthday Rimpal</h3>
+          <div class="front-emblem">🎂✨</div>
+          <p style="font-size:1.05rem;font-weight:600">A special greeting card sealed with love & wishes for your big day.</p>
+          <button class="pill-card-btn" id="toggleButton" type="button">Open Card 💌</button>
         </div>
+
+        <!-- Back Side -->
         <div class="side back">
-          <h3>Happy Birthday</h3>
-          <p>may your day be filled with love, laughter, and unforgettable moments. wishing you all the happiness your heart can hold. enjoy your special day to the fullest! may this year bring you endless joy, success, and beautiful surprises. happy birthday, celebrate big, smile brighter, and create memories that last forever!</p>
+          <h3>May All Your Wishes Come True</h3>
+          <p>
+            Dear Rimpal,<br><br>
+            May your journey ahead be filled with laughter, love, peace, and unforgettable moments. Keep inspiring everyone around you with your sweetness, your laughter, and your glowing heart.<br><br>
+            Always stay the sweet, confident, and wonderful girl you are. Happy Birthday!
+          </p>
+          <p class="back-sign">Celebrate Big & Smile Brighter 🥂✨</p>
         </div>
       </div>
     </div>
   </section>
 </main>
 
+<!-- Fullscreen Lightbox Modal for Photo Viewing -->
+<div class="lightbox-modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Photo Preview">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close photo preview">✕</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="Rimpal Photo">
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+</div>
+
+<!-- Footer -->
 <footer class="foot" data-r>
-  <p>Thanks for visiting, stay awesome 🪔</p>
-  <small>Created with magical powers by Murali</small>
+  <div class="foot-sparkles">✨ 🌸 ✨</div>
+  <p class="foot-title">Happy Birthday, Rimpal 💖</p>
+  <small class="foot-sub">May your year ahead be filled with laughter, love, and sweet memories ✨</small>
 </footer>
+
 <div id="lanterns" aria-hidden="true"></div>
-<script src="background.js"></script>
-<script src="main.js"></script>
+
+<!-- Scripts -->
+<script src="background.js?v=9"></script>
+<script src="main.js?v=9"></script>
 </body>
 </html>

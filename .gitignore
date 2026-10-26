@@ -1,0 +1,17 @@
+# Test scripts
+test_*.py
+check_*.py
+play_*.py
+
+# Test images
+img/test_*.png
+img/preview_arch_render.png
+
+# Scripts
+*.bat
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
