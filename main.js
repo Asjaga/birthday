@@ -347,38 +347,41 @@ window.scrollTo(0, 0);
   });
 })();
 
-// 8. 3D Flip Birthday Greeting Card
+// 8. Royal Birthday Card Interaction
 (function(){
-  const card = $('#card');
-  const cardContainer = $('#cardContainer');
-  const toggleBtn = $('#toggleButton');
+  const royalCard = $('#royalCard');
+  const sealBtn = $('#sealBtn');
+  const closeBtn = $('#cardCloseBtn');
 
-  if(!card) return;
-  const flip = () => {
-    const isOpening = !card.classList.contains('flipped');
-    card.classList.toggle('flipped');
-    if(isOpening && typeof confetti === 'function'){
-      const cols = ['#ffd77a', '#ff6b9d', '#fff0b3', '#ffffff', '#ff9ebb', '#ffb86b'];
-      confetti({
-        particleCount: 75,
-        spread: 80,
-        origin: { y: 0.65 },
-        colors: cols,
-        scalar: 1.15
-      });
+  if(!royalCard) return;
+
+  function openCard(e){
+    if(e) e.stopPropagation();
+    if(!royalCard.classList.contains('opened')){
+      royalCard.classList.add('opened');
+      if(typeof confetti === 'function'){
+        const cols = ['#ffd77a', '#ff6b9d', '#fff0b3', '#ffffff', '#ff9ebb', '#ffb86b'];
+        confetti({
+          particleCount: 85,
+          spread: 85,
+          origin: { y: 0.6 },
+          colors: cols,
+          scalar: 1.15
+        });
+      }
       if(typeof spawnLanterns === 'function') spawnLanterns(4);
     }
-  };
+  }
 
-  if(toggleBtn){
-    toggleBtn.addEventListener('click', e => {
-      e.stopPropagation();
-      flip();
-    });
+  function closeCard(e){
+    if(e) e.stopPropagation();
+    royalCard.classList.remove('opened');
   }
-  if(cardContainer){
-    cardContainer.addEventListener('click', flip);
-  }
+
+  if(sealBtn) sealBtn.addEventListener('click', openCard);
+  const cardCover = $('#cardCover');
+  if(cardCover) cardCover.addEventListener('click', openCard);
+  if(closeBtn) closeBtn.addEventListener('click', closeCard);
 })();
 
 // 9. Sky Lanterns Spawner Function

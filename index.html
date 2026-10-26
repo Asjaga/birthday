@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="Css/style.css?v=18">
+  <link rel="stylesheet" href="Css/style.css?v=19">
   <script src="confetti.min.js"></script>
 </head>
 <body>
@@ -129,6 +129,50 @@
       </div>
     </div>
   </section>
+
+  <!-- Section 4: Premium Royal Birthday Card -->
+  <section class="wrap" id="birthdayCardSec" data-r>
+    <h2 class="sec-title">A Birthday Card For You</h2>
+    <p class="sec-sub">Tap the seal to open your special card 💌</p>
+
+    <div class="royal-card-container">
+      <div class="royal-card" id="royalCard">
+        <!-- Card Envelope / Closed State -->
+        <div class="card-cover" id="cardCover">
+          <div class="card-glass-glow"></div>
+          <div class="card-badge">✨ Handcrafted For Rimpal ✨</div>
+          <h3 class="card-main-title">Happy Birthday<br><span>Rimpal 💖</span></h3>
+          <div class="wax-seal-btn" id="sealBtn" role="button" tabindex="0" aria-label="Open Birthday Card">
+            <div class="seal-inner">
+              <span class="seal-crown">👑</span>
+              <span class="seal-initial">R</span>
+            </div>
+          </div>
+          <p class="card-prompt">Tap the Royal Seal to open 💌</p>
+        </div>
+
+        <!-- Card Note / Revealed Content -->
+        <div class="card-letter-content" id="cardLetter">
+          <div class="letter-inner">
+            <span class="letter-tag">🌸 A Heartfelt Note</span>
+            <h4 class="letter-greeting">Dearest Rimpal,</h4>
+            <p class="letter-body">
+              Wishing you the happiest and most magical birthday ever! 🎂✨
+              <br><br>
+              From our school classroom memories to seeing you shine today, you've always carried a warmth and grace that makes everyone around you smile. You are an absolute angel with a golden heart.
+              <br><br>
+              May this year bring you endless laughter, peace, immense success, and every dream you've ever wished for. Always keep that radiant smile glowing!
+            </p>
+            <div class="letter-signature">
+              <span>With best wishes & warm smiles,</span>
+              <strong>Your School Friend 🥂✨</strong>
+            </div>
+            <button class="card-close-pill" id="cardCloseBtn" type="button">Close Card ✕</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <!-- Fullscreen Lightbox Modal for Photo Viewing -->
@@ -150,7 +194,7 @@
 <div id="lanterns" aria-hidden="true"></div>
 
 <!-- Scripts -->
-<script src="background.js?v=16"></script>
-<script src="main.js?v=16"></script>
+<script src="background.js?v=17"></script>
+<script src="main.js?v=17"></script>
 </body>
 </html>
