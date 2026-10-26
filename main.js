@@ -52,7 +52,7 @@ const $$ = selector => document.querySelectorAll(selector);
   elements.forEach(e => observer.observe(e));
 })();
 
-// 3. 3D Tilt Interaction (rAF throttled for butter-smooth 60/120fps)
+// 3. 3D Tilt Interaction (Desktop mouse only, skips touch to preserve 120Hz native phone scrolling)
 (function(){
   const root = document.documentElement;
   const tilts = [...$$('.tilt')];
@@ -60,6 +60,8 @@ const $$ = selector => document.querySelectorAll(selector);
 
   let tiltRaf = null;
   addEventListener('pointermove', e => {
+    // Never run heavy reflows on mobile touch gestures
+    if(e.pointerType === 'touch') return;
     if(tiltRaf) return;
     tiltRaf = requestAnimationFrame(() => {
       tiltRaf = null;
@@ -376,63 +378,5 @@ function spawnLanterns(num = 8){
     l.addEventListener('animationend', () => l.remove());
   }
 }
-
-// 10. Butter-smooth Inertial Scrolling Engine (Apple / Awwwards Grade)
-(function(){
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  let currentY = window.scrollY;
-  let targetY = window.scrollY;
-  let isScrolling = false;
-  const ease = 0.085; // Silky glide inertia factor
-
-  function clamp(val, min, max){
-    return Math.max(min, Math.min(val, max));
-  }
-
-  function getMaxScroll(){
-    return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-  }
-
-  function tick(){
-    const diff = targetY - currentY;
-    if(Math.abs(diff) < 0.4){
-      currentY = targetY;
-      window.scrollTo(0, currentY);
-      isScrolling = false;
-      return;
-    }
-
-    currentY += diff * ease;
-    window.scrollTo(0, currentY);
-    requestAnimationFrame(tick);
-  }
-
-  window.addEventListener('wheel', (e) => {
-    // Preserve browser zoom behavior with modifier keys
-    if(e.ctrlKey || e.metaKey || e.altKey) return;
-
-    e.preventDefault();
-    const maxScroll = getMaxScroll();
-    let delta = e.deltaY;
-    if(e.deltaMode === 1) delta *= 38;
-    else if(e.deltaMode === 2) delta *= 750;
-
-    targetY = clamp(targetY + delta, 0, maxScroll);
-
-    if(!isScrolling){
-      isScrolling = true;
-      requestAnimationFrame(tick);
-    }
-  }, { passive: false });
-
-  // Sync state if user drags scrollbar, swipes on touch, or uses keyboard
-  window.addEventListener('scroll', () => {
-    if(!isScrolling){
-      currentY = window.scrollY;
-      targetY = window.scrollY;
-    }
-  }, { passive: true });
-})();
 
 

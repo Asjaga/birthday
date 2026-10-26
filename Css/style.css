@@ -21,18 +21,16 @@
 }
 
 html {
-  scroll-behavior: auto;
-  overflow-x: hidden;
-  width: 100%;
+  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  width: 100%;
 }
 
 body {
   background: var(--bg-deep);
   color: #fff;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  overflow-x: hidden;
-  overscroll-behavior-x: none;
+  overflow-x: clip;
   width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
@@ -40,11 +38,17 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
 }
 
-button, a, .music-player-pill, .polaroid, .card-wrap, #wishBtn, #flameWrapper, .round-btn {
+button, a, .music-player-pill, #wishBtn, .round-btn, .lightbox-close {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+}
+
+/* Ensure large content sections never block native phone finger scrolling */
+.card-wrap, .polaroid, .letter, .cake-stage, #cardContainer, .stack, main, section {
+  touch-action: pan-y;
 }
 
 :focus-visible {
