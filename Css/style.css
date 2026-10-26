@@ -151,112 +151,6 @@ img, svg {
   pointer-events: none;
 }
 
-/* Floating Top Navigation / Audio Bar */
-.top-bar {
-  position: fixed;
-  top: 14px;
-  left: 14px;
-  right: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  z-index: 100;
-  pointer-events: none;
-}
-
-.music-player-pill {
-  pointer-events: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 14px 6px 10px;
-  border-radius: 9999px;
-  background: rgba(18, 14, 38, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 215, 122, 0.3);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 18px rgba(255, 126, 182, 0.2);
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
-  user-select: none;
-}
-
-.music-player-pill:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 215, 122, 0.6);
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45), 0 0 24px rgba(255, 126, 182, 0.35);
-}
-
-.music-player-pill:active {
-  transform: scale(0.96);
-}
-
-.play-icon-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold), var(--rose));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #2b0e20;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-  font-size: 0.85rem;
-}
-
-.music-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.music-title {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #fff;
-  white-space: nowrap;
-}
-
-.music-status {
-  font-size: 0.68rem;
-  color: var(--gold);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-/* Equalizer animated bars */
-.equalizer {
-  display: flex;
-  align-items: flex-end;
-  gap: 2.5px;
-  height: 12px;
-}
-
-.eq-bar {
-  width: 2.5px;
-  height: 100%;
-  background: var(--gold);
-  border-radius: 2px;
-  transform-origin: bottom;
-  animation: eqBounce 1.2s ease-in-out infinite alternate;
-}
-
-.eq-bar:nth-child(1) { height: 35%; animation-delay: 0.1s; }
-.eq-bar:nth-child(2) { height: 85%; animation-delay: 0.3s; }
-.eq-bar:nth-child(3) { height: 50%; animation-delay: 0.2s; }
-.eq-bar:nth-child(4) { height: 95%; animation-delay: 0.4s; }
-
-.paused .eq-bar {
-  animation-play-state: paused;
-  height: 25% !important;
-}
-
-@keyframes eqBounce {
-  0% { transform: scaleY(0.2); }
-  50% { transform: scaleY(0.9); }
-  100% { transform: scaleY(0.4); }
-}
-
 /* 3D Tilt Utility */
 .tilt {
   transform-style: preserve-3d;
@@ -941,8 +835,8 @@ main {
 }
 
 .card-wrap {
-  width: min(92vw, 480px);
-  height: clamp(380px, 58vh, 460px);
+  width: min(90vw, 380px);
+  height: 420px;
   perspective: 1500px;
   cursor: pointer;
   animation: hoverCard 5s ease-in-out infinite;
@@ -969,14 +863,14 @@ main {
   inset: 0;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  border-radius: 28px;
-  padding: clamp(24px, 5vw, 36px);
+  border-radius: 24px;
+  padding: 22px 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   box-shadow: 0 8px 0 rgba(120, 30, 80, 0.35), 0 35px 55px rgba(10, 0, 40, 0.6);
-  overflow-y: auto;
+  overflow: hidden !important;
 }
 
 .front {
@@ -1120,31 +1014,10 @@ main {
 
 /* Responsive Rules for Mobile (iPhone 18 Pro / 17 Pro / 16 Pro / Flagship Smartphones) */
 @media (max-width: 600px) {
-  .top-bar {
-    top: max(10px, calc(env(safe-area-inset-top, 0px) + 6px));
-    right: max(12px, calc(env(safe-area-inset-right, 0px) + 6px));
-  }
-
-  .music-player-pill {
-    padding: 6px 12px 6px 8px;
-    gap: 8px;
-  }
-  .music-title {
-    font-size: 0.74rem;
-  }
-  .music-status {
-    font-size: 0.64rem;
-  }
-  .play-icon-btn {
-    width: 28px;
-    height: 28px;
-    font-size: 0.78rem;
-  }
-
   /* Hero Section for iPhone 19.5:9 display ratio */
   .hero {
-    padding-top: max(68px, calc(env(safe-area-inset-top, 0px) + 52px));
-    padding-bottom: 24px;
+    padding-top: max(36px, calc(env(safe-area-inset-top, 0px) + 20px));
+    padding-bottom: 20px;
     padding-left: 14px;
     padding-right: 14px;
     min-height: 100svh;
@@ -1299,49 +1172,51 @@ main {
     min-width: 65px;
   }
 
-  /* 3D Greeting Card */
+  /* 3D Greeting Card - Compact & Never captures scroll */
   .card-wrap {
-    width: min(94vw, 400px);
-    height: clamp(380px, 56vh, 440px);
+    width: min(88vw, 340px);
+    height: 385px;
   }
 
   .side {
-    padding: 24px 18px;
-    border-radius: 22px;
+    padding: 20px 16px;
+    border-radius: 20px;
+    overflow: hidden !important;
   }
 
   .front h3 {
-    font-size: clamp(2rem, 7.5vw, 2.6rem);
+    font-size: 1.8rem;
   }
 
   .front-emblem {
-    font-size: 3rem;
-    margin: 6px 0;
+    font-size: 2.2rem;
+    margin: 4px 0;
   }
 
   .front p {
-    font-size: 0.95rem !important;
+    font-size: 0.86rem !important;
+    line-height: 1.45;
   }
 
   .pill-card-btn {
-    padding: 11px 28px;
-    font-size: 0.92rem;
-    min-height: 44px;
+    padding: 8px 22px;
+    font-size: 0.85rem;
+    min-height: 40px;
   }
 
   .back h3 {
-    font-size: clamp(1.2rem, 4.8vw, 1.45rem);
-    margin-bottom: 10px;
+    font-size: 1.25rem;
+    margin-bottom: 8px;
   }
 
   .back p {
-    font-size: clamp(0.86rem, 3.4vw, 0.96rem);
-    line-height: 1.55;
+    font-size: 0.84rem;
+    line-height: 1.48;
   }
 
   .back-sign {
-    font-size: 1.25rem !important;
-    margin-top: 10px !important;
+    font-size: 1.15rem !important;
+    margin-top: 8px !important;
   }
 
   /* Lightbox */
