@@ -836,10 +836,12 @@ main {
 
 .card-wrap {
   width: min(90vw, 380px);
-  height: 420px;
+  height: 440px;
   perspective: 1500px;
   cursor: pointer;
   animation: hoverCard 5s ease-in-out infinite;
+  /* Isolation prevents parent overflow from interfering with 3D children */
+  isolation: isolate;
 }
 
 @keyframes hoverCard {
@@ -871,7 +873,7 @@ main {
   align-items: center;
   text-align: center;
   box-shadow: 0 8px 0 rgba(80, 15, 45, 0.4), 0 35px 60px rgba(10, 0, 35, 0.75);
-  overflow: hidden;
+  /* overflow:hidden breaks backface-visibility on iOS Safari — keep it off */
 }
 
 /* Front Side: Royal Luxury Greeting Card */
@@ -1307,18 +1309,18 @@ main {
 
   /* Polaroid Stack */
   .stack {
-    width: min(72vw, 270px);
+    width: min(80vw, 300px);
     aspect-ratio: 4 / 5.2;
   }
 
   .polaroid {
-    padding: 8px 8px 5px;
+    padding: 10px 10px 6px;
     border-radius: 8px;
   }
 
   .polaroid figcaption {
-    font-size: 1.25rem;
-    padding: 6px 0 3px;
+    font-size: 1.3rem;
+    padding: 7px 0 4px;
   }
 
   .ctrl {
@@ -1340,13 +1342,14 @@ main {
   /* 3D Greeting Card */
   .card-wrap {
     width: min(88vw, 340px);
-    height: 380px;
+    height: 400px;
+    isolation: isolate;
   }
 
   .side {
     padding: 16px 14px;
     border-radius: 18px;
-    overflow: hidden;
+    /* no overflow — backface-visibility needs clean stacking context */
   }
 
   .front h3 {
@@ -1490,11 +1493,11 @@ main {
   }
 
   .stack {
-    width: 240px;
+    width: 260px;
   }
 
   .card-wrap {
-    height: 360px;
+    height: 370px;
   }
 
   .front h3 {
