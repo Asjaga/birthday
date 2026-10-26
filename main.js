@@ -7,10 +7,10 @@ const $$ = selector => document.querySelectorAll(selector);
   const el = $('#typewriter');
   if(!el) return;
   const phrases = [
-    'Happy Birthday ✨',
-    'To Dearest Rimpal 🌸',
-    'Queen of Radiance 👑',
-    'Wishing You Endless Joy 💖'
+    'Happy Birthday Rimpal! 🎂',
+    'To an absolute angel 🌸',
+    'From our school days till now ✨',
+    'Always keep smiling 💖'
   ];
   const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -205,11 +205,11 @@ const $$ = selector => document.querySelectorAll(selector);
   const flameWrapper = $('#flameWrapper');
 
   const lines = [
-    'Your wish has been heard by the stars ✨ May all your dreams come true!',
-    'Close your eyes, smile brightly, and believe in magic 🌟',
-    'Another year wiser, stronger, and more breathtaking than ever 👑',
-    'The candles are out—let a magical year begin! 🎂💖',
-    'May every day bring you a reason to smile as radiantly as you do 🌸'
+    'Your wish is made! May all your dreams come true 🌟',
+    'Keep smiling always, you truly deserve the best year ahead 💖',
+    'The candles are out—time for lots of cake and happy moments! 🎂✨',
+    'May you always stay as sweet and cheerful as you are 🌸',
+    'To another amazing year of laughter and great friendship! 🥂✨'
   ];
   let msgIdx = 0;
 
