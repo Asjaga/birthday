@@ -94,13 +94,12 @@ const $$ = selector => document.querySelectorAll(selector);
   const statusText = $('#musicStatus');
   const playIcon = $('#playIcon');
 
-  if(audio){
-    audio.src = 'audio/song_traditional_vocal.mp3';
-    audio.loop = true;
-    audio.volume = 1.0;
-    audio.muted = false;
-    try { audio.load(); } catch(e){}
-  }
+  if(!audio) return;
+
+  audio.src = 'audio/song_traditional_vocal.mp3';
+  audio.loop = true;
+  audio.volume = 1.0;
+  audio.muted = false;
 
   function updateUI(playing){
     if(playing){
@@ -114,87 +113,72 @@ const $$ = selector => document.querySelectorAll(selector);
     }
   }
 
-  let isAttempting = false;
-  async function tryPlay(){
-    if(!audio || isAttempting) return;
-    isAttempting = true;
-    try {
-      audio.volume = 1.0;
-      audio.muted = false;
-      const playPromise = audio.play();
-      if(playPromise !== undefined){
-        await playPromise;
+  function startAudio(){
+    if(!audio) return;
+    audio.muted = false;
+    audio.volume = 1.0;
+    const p = audio.play();
+    if(p && typeof p.then === 'function'){
+      p.then(() => {
         updateUI(true);
-        cleanupInteractionListeners();
-      }
-    } catch(err) {
-      // Browser blocked unprompted autoplay - silent wait for earliest movement/touch
-      updateUI(false);
-    } finally {
-      isAttempting = false;
+        removeUnlockers();
+      }).catch(err => {
+        updateUI(false);
+      });
     }
   }
 
-  function pauseMusic(){
-    if(!audio) return;
-    audio.pause();
-    updateUI(false);
+  function toggleAudio(e){
+    if(e) e.stopPropagation();
+    if(audio.paused){
+      startAudio();
+    } else {
+      audio.pause();
+      updateUI(false);
+    }
   }
 
   if(toggleBtn){
-    toggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if(audio && !audio.paused){
-        pauseMusic();
-      } else {
-        tryPlay();
-      }
-    });
+    toggleBtn.addEventListener('click', toggleAudio);
   }
 
-  if(audio){
-    audio.addEventListener('play', () => updateUI(true));
-    audio.addEventListener('playing', () => updateUI(true));
-    audio.addEventListener('pause', () => updateUI(false));
-    audio.addEventListener('ended', () => {
-      audio.currentTime = 0;
-      tryPlay();
-    });
-  }
+  audio.addEventListener('play', () => updateUI(true));
+  audio.addEventListener('playing', () => updateUI(true));
+  audio.addEventListener('pause', () => updateUI(false));
+  audio.addEventListener('ended', () => {
+    audio.currentTime = 0;
+    startAudio();
+  });
 
   // Direct immediate execution
-  tryPlay();
+  startAudio();
 
   // On DOM ready
   if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', tryPlay);
+    document.addEventListener('DOMContentLoaded', startAudio);
   }
 
   // On Window Load
-  window.addEventListener('load', tryPlay);
+  window.addEventListener('load', startAudio);
 
-  // Seamless silent triggers on any movement, touch, scroll, focus, or key
-  const gestureEvents = [
-    'mousemove', 'pointermove', 'pointerdown', 'mousedown', 'mouseup',
-    'touchstart', 'touchend', 'scroll', 'wheel', 'keydown', 'focus'
-  ];
-
-  function onGesture(){
-    if(audio && audio.paused){
-      tryPlay();
+  // Unblock on the very first natural user interaction anywhere on screen
+  const unlockEvents = ['pointerdown', 'touchstart', 'touchend', 'mousedown', 'mouseup', 'click', 'keydown'];
+  function onFirstInteraction(){
+    if(audio.paused){
+      startAudio();
     }
   }
 
-  function cleanupInteractionListeners(){
-    gestureEvents.forEach(evt => {
-      window.removeEventListener(evt, onGesture, { capture: true });
-      document.removeEventListener(evt, onGesture, { capture: true });
+  function removeUnlockers(){
+    unlockEvents.forEach(evt => {
+      window.removeEventListener(evt, onFirstInteraction, { capture: true });
+      document.removeEventListener(evt, onFirstInteraction, { capture: true });
     });
   }
 
-  gestureEvents.forEach(evt => {
-    window.addEventListener(evt, onGesture, { capture: true, passive: true });
-    document.addEventListener(evt, onGesture, { capture: true, passive: true });
+  unlockEvents.forEach(evt => {
+    window.addEventListener(evt, onFirstInteraction, { capture: true, passive: true });
+    document.addEventListener(evt, onFirstInteraction, { capture: true, passive: true });
   });
 })();
 
