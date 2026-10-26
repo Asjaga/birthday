@@ -2,6 +2,10 @@
 const $ = selector => document.querySelector(selector);
 const $$ = selector => document.querySelectorAll(selector);
 
+// 0. Scroll to top on page load/refresh
+if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
 // 1. Dynamic Shimmering Typewriter Effect
 (function(){
   const el = $('#typewriter');
