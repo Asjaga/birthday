@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="Css/style.css?v=15">
+  <link rel="stylesheet" href="Css/style.css?v=16">
   <script src="confetti.min.js"></script>
 </head>
 <body>
@@ -37,7 +37,7 @@
   <div class="portrait-container tilt" data-depth="1">
     <div class="portrait-halo"></div>
     <div class="portrait-frame">
-      <img src="img/user.png?v=15" alt="Rimpal">
+      <img src="img/user.png?v=16" alt="Rimpal">
     </div>
     <i class="spark s1">✦</i>
     <i class="spark s2">✧</i>
@@ -139,10 +139,33 @@
       <div class="card" id="card">
         <!-- Front Side -->
         <div class="side front">
-          <h3>Happy Birthday Rimpal 💖</h3>
-          <div class="front-emblem">🎂✨</div>
-          <p style="font-size:1.05rem;font-weight:600">A special greeting card from your school friend, sealed with love & best wishes.</p>
-          <button class="pill-card-btn" id="toggleButton" type="button">Open Card 💌</button>
+          <div class="card-foil-frame" aria-hidden="true"></div>
+          <div class="card-corner tl" aria-hidden="true">✦</div>
+          <div class="card-corner tr" aria-hidden="true">✦</div>
+          <div class="card-corner bl" aria-hidden="true">✦</div>
+          <div class="card-corner br" aria-hidden="true">✦</div>
+
+          <div class="front-top">
+            <span class="royal-pill">👑 Royal Edition</span>
+            <h3>Happy Birthday Rimpal 💖</h3>
+          </div>
+
+          <div class="wax-seal-wrapper">
+            <div class="ribbon-band" aria-hidden="true"></div>
+            <div class="wax-seal">
+              <div class="seal-inner">
+                <span class="seal-crown">👑</span>
+                <span class="seal-initial">R</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="front-bottom">
+            <p class="front-desc">A special greeting card from your school friend, sealed with love & best wishes.</p>
+            <button class="pill-card-btn" id="toggleButton" type="button">
+              <span class="btn-text">Open Card 💌</span>
+            </button>
+          </div>
         </div>
 
         <!-- Back Side -->
@@ -180,7 +203,7 @@
 <div id="lanterns" aria-hidden="true"></div>
 
 <!-- Scripts -->
-<script src="background.js?v=15"></script>
-<script src="main.js?v=15"></script>
+<script src="background.js?v=16"></script>
+<script src="main.js?v=16"></script>
 </body>
 </html>

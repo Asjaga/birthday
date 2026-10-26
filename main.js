@@ -350,7 +350,21 @@ const $$ = selector => document.querySelectorAll(selector);
   const toggleBtn = $('#toggleButton');
 
   if(!card) return;
-  const flip = () => card.classList.toggle('flipped');
+  const flip = () => {
+    const isOpening = !card.classList.contains('flipped');
+    card.classList.toggle('flipped');
+    if(isOpening && typeof confetti === 'function'){
+      const cols = ['#ffd77a', '#ff6b9d', '#fff0b3', '#ffffff', '#ff9ebb', '#ffb86b'];
+      confetti({
+        particleCount: 75,
+        spread: 80,
+        origin: { y: 0.65 },
+        colors: cols,
+        scalar: 1.15
+      });
+      if(typeof spawnLanterns === 'function') spawnLanterns(4);
+    }
+  };
 
   if(toggleBtn){
     toggleBtn.addEventListener('click', e => {
